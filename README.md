@@ -4,5 +4,5 @@
 
 ## Execução dos scripts
 
-- Terminal com `go run main.php`
+- Terminal com `go run main.go`
 - Vim com `:!go run main.go` (`:!!` repete o comando anterior)
