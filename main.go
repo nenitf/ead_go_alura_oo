@@ -19,6 +19,11 @@ func (c *ContaCorrente) Sacar(valorDoSaque float64) string {
 	}
 }
 
+func (c *ContaCorrente) depositarDezReais() (saldo float64) {
+	c.saldo += 10
+	return
+}
+
 func main() {
 	contaDaSilvia := ContaCorrente{}
 	contaDaSilvia.titular = "Silvia"
@@ -28,4 +33,11 @@ func main() {
 
 	fmt.Println(contaDaSilvia.Sacar(400))
 	fmt.Println(contaDaSilvia.saldo)
+
+	contaTeste := ContaCorrente{saldo: 10}
+
+	contaTeste.depositarDezReais()
+	contaTeste.depositarDezReais()
+
+	fmt.Println(contaTeste)
 }
