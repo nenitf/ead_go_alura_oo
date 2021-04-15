@@ -1,7 +1,9 @@
 package contas
 
+import "github.com/nenitf/ead_go_alura_oo/clientes"
+
 type ContaCorrente struct {
-	Titular       string
+	Titular       clientes.Titular
 	NumeroAgencia int
 	NumeroConta   int
 	Saldo         float64
