@@ -1,58 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-type ContaCorrente struct {
-	titular       string
-	numeroAgencia int
-	numeroConta   int
-	saldo         float64
-}
-
-func (c *ContaCorrente) Sacar(valorDoSaque float64) string {
-	podeSacar := valorDoSaque > 0 && valorDoSaque <= c.saldo
-	if podeSacar {
-		c.saldo -= valorDoSaque
-		return "Saque realizado com sucesso"
-	} else {
-		return "Saldo insuficiente"
-	}
-}
-
-func (c *ContaCorrente) Depositar(valorDoDeposito float64) (string, float64) {
-	if valorDoDeposito > 0 {
-		c.saldo += valorDoDeposito
-		return "Deposito realizado com sucesso", c.saldo
-	} else {
-		return "Valor do depósito menor que zero", c.saldo
-	}
-}
-
-func (c *ContaCorrente) Transferir(valorDaTransferencia float64, contaDestino *ContaCorrente) bool {
-	if valorDaTransferencia < c.saldo && valorDaTransferencia > 0 {
-		c.saldo -= valorDaTransferencia
-		contaDestino.Depositar(valorDaTransferencia)
-		return true
-	} else {
-		return false
-	}
-}
+	"github.com/nenitf/ead_go_alura_oo/contas"
+)
 
 func main() {
-	contaDaSilvia := ContaCorrente{}
-	contaDaSilvia.titular = "Silvia"
-	contaDaSilvia.saldo = 500
+	contaDaSilvia := contas.ContaCorrente{}
+	contaDaSilvia.Titular = "Silvia"
+	contaDaSilvia.Saldo = 500
 
-	fmt.Println(contaDaSilvia.saldo)
+	fmt.Println(contaDaSilvia.Saldo)
 
 	fmt.Println(contaDaSilvia.Sacar(400))
-	fmt.Println(contaDaSilvia.saldo)
+	fmt.Println(contaDaSilvia.Saldo)
 
-	fmt.Println(contaDaSilvia.saldo)
+	fmt.Println(contaDaSilvia.Saldo)
 	status, valor := contaDaSilvia.Depositar(2000)
 	fmt.Println(status, valor)
 
-	contaDoGustavo := ContaCorrente{titular: "Gustavo", saldo: 10}
+	contaDoGustavo := contas.ContaCorrente{Titular: "Gustavo", Saldo: 10}
 	status2 := contaDaSilvia.Transferir(200, &contaDoGustavo)
 	fmt.Println(status2)
 }
